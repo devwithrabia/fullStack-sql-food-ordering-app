@@ -10,30 +10,28 @@ type Product = {
 type Products = Product[]
 
 export const featuredProducts: Products = [
-
-    {
-        id: 1,
-        title: 'Pizza',
-        desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
-        img: '/featuredPizza.png',
-        price: 28.9,
-        options: [
-          {
-            title: 'Small',
-            additionalPrice: 0
-          },
-    
-          {
-            title: 'Medium',
-            additionalPrice: 4
-          },
-          {
-            title:"Large",
-            additionalPrice:6
-        },
-        ]
+  {
+    id: 1,
+    title: 'Pizza',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/featuredPizza.png',
+    price: 28.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
       },
- 
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
 
   {
     id: 2,
@@ -52,9 +50,9 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
   },
 
@@ -75,9 +73,9 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
   },
 
@@ -98,9 +96,9 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
   },
 
@@ -121,9 +119,9 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
   },
 
@@ -144,13 +142,11 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
   },
-
- 
 
   {
     id: 7,
@@ -169,9 +165,49 @@ export const featuredProducts: Products = [
         additionalPrice: 4
       },
       {
-        title:"Large",
-        additionalPrice:6
-    },
+        title: 'Large',
+        additionalPrice: 6
+      }
     ]
+  }
+]
+
+type Menu = {
+  id: number
+  slug: string
+  title: string
+  img?: string
+  desc?: string
+  color: string
+}[]
+
+export const menu: Menu = [
+  {
+    id: 1,
+    slug: 'pastas',
+    title: 'Italian Pastas ',
+    img: '/menuNoodles.avif',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    color: 'white'
   },
+
+  {
+    id: 2,
+    slug: 'pizzas',
+    title: 'Cheezy Pizzas',
+    img: '/menuPizza.jpg',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    color: 'black'
+  },
+
+  {
+    id: 3,
+    slug: 'burgers',
+    title: 'Juicy Burgers ',
+    img: '/menuBurger.jpg',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    color: 'white'
+  }
+
+ 
 ]
