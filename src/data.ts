@@ -172,6 +172,229 @@ export const featuredProducts: Products = [
   }
 ]
 
+export const pizzas: Products = [
+  {
+    id: 1,
+    title: 'Pizza1',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza1.jpg',
+    price: 28.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 2,
+    title: 'pizza2',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza2.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 3,
+    title: 'pizza3',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza3.jpeg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 4,
+    title: 'pizza4',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza4.jpeg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 5,
+    title: 'pizza5',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza5.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 6,
+    title: 'pizza6',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza6.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 7,
+    title: 'pizza7',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza7.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 8,
+    title: 'pizza8',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza8.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+
+  {
+    id: 9,
+    title: 'pizza9',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza9.jpg',
+    price: 24.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
+
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  },
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 type Menu = {
   id: number
   slug: string
