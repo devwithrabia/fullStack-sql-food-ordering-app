@@ -9,7 +9,7 @@ type Product = {
 
 type Products = Product[]
 
-export const featuredProducts: Products = [
+export const featuredProducts: Products= [
   {
     id: 1,
     title: 'Pizza',
@@ -378,19 +378,32 @@ export const pizzas: Products = [
         additionalPrice: 6
       }
     ]
-  },
+  }
 ]
 
+export const singleProduct: Product = 
+  {
+    id: 1,
+    title: 'Pizza1',
+    desc: 'A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!A garlic lovers delight, featuring linguine smothered in a creamy Parmesan!',
+    img: '/pizza1.jpg',
+    price: 28.9,
+    options: [
+      {
+        title: 'Small',
+        additionalPrice: 0
+      },
 
-
-
-
-
-
-
-
-
-
+      {
+        title: 'Medium',
+        additionalPrice: 4
+      },
+      {
+        title: 'Large',
+        additionalPrice: 6
+      }
+    ]
+  }
 
 
 
@@ -431,6 +444,4 @@ export const menu: Menu = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     color: 'white'
   }
-
- 
 ]
