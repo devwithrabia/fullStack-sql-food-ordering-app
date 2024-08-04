@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Featured = () => {
   return (
-    <div className='w-screen overflow-x-scroll text-red-500'>
+    <div className='overflow-x-scroll text-red-500  '>
       <div className='w-max flex'>
         {featuredProducts.map(item => {
           return (
