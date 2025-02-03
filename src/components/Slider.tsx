@@ -6,7 +6,7 @@ const data: any = [
   {
     id: 1,
     title: 'always fresh & always crispy & always hot',
-    image: '/girlPizza.jpg'
+    image: '/burger.jpg'
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const data: any = [
   {
     id: 3,
     title: 'the best burger to share with your family',
-    image: '/burger.jpg'
+    image: '/cheese.jpg'
   }
 ]
 const Slider = () => {
@@ -24,7 +24,7 @@ const Slider = () => {
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
-  //     setCurrentSlide(prev => (prev === data.length-1 ? 0 : prev + 1))
+  //     setCurrentSlide(prev => (prev === data.length - 1 ? 0 : prev + 1))
   //   }, 2000)
 
   //   return () => clearInterval(interval)
@@ -33,7 +33,9 @@ const Slider = () => {
   return (
     <div className='flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row bg-fuchsia-50'>
       <div className='flex-1 h-1/2 flex items-center justify-center flex-col gap-8 text-red-500 font-bold lg:h-full'>
-        <h1 className='text-5xl text-center uppercase p-4 md:text-6xl xl:text-7xl md:p-10 '>{data[currentSlide].title}</h1>
+        <h1 className='text-5xl text-center uppercase p-4 md:text-6xl xl:text-7xl md:p-10 '>
+          {data[currentSlide].title}
+        </h1>
 
         <button className='bg-red-500 text-white py-4 px-8 '>Order Now</button>
       </div>
