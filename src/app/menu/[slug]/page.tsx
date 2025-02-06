@@ -8,6 +8,7 @@ type Props = {
 }
 
 const getData = async (slug: string) => {
+  //here we send slug through url not querry:
   const res = await fetch(`http://localhost:3000/api/products?cat=${slug}`, {
     cache: 'no-store'
   })

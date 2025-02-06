@@ -1,5 +1,8 @@
+// 'use client'
+
 import Image from 'next/image'
-import CountDown from './CountDown'
+import CountDown from './CountDown' // 'use client'
+
 const Offer = () => {
   return (
     <div className='bg-black h-screen flex flex-col md:flex-row  md:justify-between bg-[url("/backGround.jpg")] md:h-[70vh] '>
