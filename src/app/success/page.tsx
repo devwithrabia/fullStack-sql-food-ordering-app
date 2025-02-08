@@ -3,9 +3,9 @@
 //on success page we have intent id on url after success ,so we get this paymentintent from url through searchparams:
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 
-const SuccessPage = () => {
+const SuccessContent = () => {
   const searchparams = useSearchParams()
 
   const paymentIntent = searchparams.get('payment_intent')
@@ -31,4 +31,13 @@ const SuccessPage = () => {
   return <div>payment successful. you are being redirected to the orders page. please do not close the page</div>
 }
 
-export default SuccessPage
+//useSearchParams() is a server-side API that needs to be suspended while retrieving the data.so we will
+//wrap component in suspense:
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
+  )
+}
