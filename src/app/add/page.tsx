@@ -66,7 +66,9 @@ const AddPage = () => {
 
     try {
       // const url = await upload()
-      const res = await fetch(`http://localhost:3000/api/products`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
+      const res = await fetch(`${apiUrl}/api/products`, {
         method: 'POST',
         body: JSON.stringify({
           ...inputs,
