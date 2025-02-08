@@ -1,4 +1,3 @@
-import { pizzas } from '@/data'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ProductType } from '@/types/types'
@@ -8,8 +7,10 @@ type Props = {
 }
 
 const getData = async (slug: string) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
   //here we send slug through url not querry:
-  const res = await fetch(`http://localhost:3000/api/products?cat=${slug}`, {
+  const res = await fetch(`${apiUrl}/api/products?cat=${slug}`, {
     cache: 'no-store'
   })
 

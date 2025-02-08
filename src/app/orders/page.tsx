@@ -10,6 +10,8 @@ import { toast } from 'react-toastify'
 const OrdersPage = () => {
   const { data: session, status } = useSession()
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
   const router = useRouter()
 
   if (status === 'unauthenticated') {
@@ -23,7 +25,7 @@ const OrdersPage = () => {
 
   const { isPending, data } = useQuery({
     queryKey: ['orders'],
-    queryFn: () => fetch('http://localhost:3000/api/orders').then(res => res.json())
+    queryFn: () => fetch(`${apiUrl}/api/orders`).then(res => res.json())
   })
 
   const queryClient = useQueryClient()
@@ -32,7 +34,7 @@ const OrdersPage = () => {
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`http://localhost:3000/api/orders/${id}`, {
+      return fetch(`${apiUrl}/api/orders/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

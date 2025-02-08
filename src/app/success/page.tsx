@@ -10,12 +10,14 @@ const SuccessContent = () => {
 
   const paymentIntent = searchparams.get('payment_intent')
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
   const router = useRouter()
 
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        await fetch(`http://localhost:3000/api/confirm/${paymentIntent}`, {
+        await fetch(`${apiUrl}/api/confirm/${paymentIntent}`, {
           method: 'PUT'
         })
 
