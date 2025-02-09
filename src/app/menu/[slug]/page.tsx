@@ -7,7 +7,7 @@ type Props = {
 }
 
 const getData = async (slug: string) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  const apiUrl = process.env.API_URL
 
   //here we send slug through url not querry:
   const res = await fetch(`${apiUrl}/api/products?cat=${slug}`, {
