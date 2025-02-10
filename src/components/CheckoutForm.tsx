@@ -27,11 +27,13 @@ export default function CheckoutForm() {
 
     setIsLoading(true)
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000/success'
+        return_url: `${apiUrl}/success`
       }
     })
 
