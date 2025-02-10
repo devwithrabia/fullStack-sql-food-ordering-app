@@ -13,8 +13,6 @@ const CartPage = () => {
 
   const router = useRouter()
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
   useEffect(() => {
     useCartStore.persist.rehydrate()
   }, [])
@@ -22,6 +20,8 @@ const CartPage = () => {
   console.log(products)
 
   const checkoutOrder = async () => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     if (!session) {
       router.push('/')
     } else {
