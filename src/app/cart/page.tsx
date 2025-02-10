@@ -20,12 +20,12 @@ const CartPage = () => {
   console.log(products)
 
   const checkoutOrder = async () => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
     if (!session) {
       router.push('/')
     } else {
       try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
         const res = await fetch(`${apiUrl}/api/orders`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
