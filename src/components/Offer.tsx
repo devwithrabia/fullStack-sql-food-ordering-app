@@ -20,7 +20,7 @@ const Offer = () => {
       </div>
 
       <div className='relative w-full flex-1 md:h-full'>
-        <Image src='/featuredBiryani.png  ' alt='' fill className='object-contain' />
+        <Image src='/featuredBiryani.png' alt='' fill className='object-contain' />
       </div>
     </div>
   )
