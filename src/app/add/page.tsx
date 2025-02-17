@@ -2,6 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 
 type Inputs = {
@@ -16,11 +17,13 @@ type Inputs = {
 const AddPage = () => {
   const { data: session, status } = useSession()
   const router = useRouter()
+  const [imageBase64, setImageBase64] = useState<string>('')
 
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors }
   } = useForm<Inputs>({
     defaultValues: {
@@ -40,6 +43,20 @@ const AddPage = () => {
 
   if (status === 'loading') return <p>Loading...</p>
   if (status === 'unauthenticated' || !session?.user.isAdmin) router.push('/')
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        const base64String = reader.result as string
+        setImageBase64(base64String)
+        setValue('img', base64String) // Set form value
+      }
+      reader.onerror = error => console.error('Error reading file:', error)
+    }
+  }
 
   const onSubmit = async (data: Inputs) => {
     try {
@@ -67,10 +84,13 @@ const AddPage = () => {
           <label>Image</label>
 
           <input
+            type='file'
+            accept='image/*'
+            onChange={handleImageChange}
             className='ring-1 ring-red-200 p-2 rounded-sm'
-            type='text'
-            {...register('img', { required: 'image is required' })}
           />
+
+          {imageBase64 && <img src={imageBase64} alt='Preview' className='w-32 h-32 mt-2' />}
 
           {errors.img && <span className='text-red-500'>{errors.img.message}</span>}
         </div>
