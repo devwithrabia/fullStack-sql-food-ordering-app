@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+button {
+    cursor: pointer;
+  }
+  
+  a {
+    cursor: pointer;
+  }
+  
+  #nprogress .bar {
+    background: orange !important; /* Change progress bar color */
+    height: 5px !important; /* Change progress bar thickness */
+  }
+  
+ 
