@@ -36,6 +36,8 @@ const AddPage = () => {
     }
   })
 
+  //for settiing options:
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'options'
@@ -46,14 +48,18 @@ const AddPage = () => {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
+
     if (file) {
       const reader = new FileReader()
+
       reader.readAsDataURL(file)
+
       reader.onload = () => {
         const base64String = reader.result as string
         setImageBase64(base64String)
         setValue('img', base64String) // Set form value
       }
+
       reader.onerror = error => console.error('Error reading file:', error)
     }
   }
@@ -68,6 +74,7 @@ const AddPage = () => {
       })
 
       const result = await res.json()
+
       router.push(`/singleProduct/${result.id}`)
     } catch (error) {
       console.error(error)
