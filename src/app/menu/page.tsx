@@ -29,17 +29,8 @@ const MenuPage = async () => {
             className='w-[500px] h-[500px] p-8 flex flex-col justify-center'
             style={{ backgroundImage: `url(${category.img})`, color: `${category.color}` }}
           >
-            {/* <div className={`text-${category.color} `}> */}
             <h1 className='uppercase font-bold text-3xl'>{category.title}</h1>
             <p className='text-sm my-8'>{category.desc}</p>
-            {/* <button
-              className={`hidden 2xl:block bg-${category.color} text-${
-                category.color === 'black' ? 'white' : 'red-500'
-              } text-red-500 py-2 px-4 rounded-md`}
-            >
-              Explore
-            </button> */}
-            {/* </div> */}
           </Link>
         )
       })}
