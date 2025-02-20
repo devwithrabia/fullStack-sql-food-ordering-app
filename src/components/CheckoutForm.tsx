@@ -54,10 +54,17 @@ export default function CheckoutForm() {
   return (
     <form id='payment-form' onSubmit={handleSubmit}>
       <PaymentElement id='payment-element' options={{ layout: 'accordion' }} />
+
       <AddressForm />
-      <button disabled={isLoading || !stripe || !elements} id='submit'>
-        <span id='button-text'>{isLoading ? <div className='spinner' id='spinner'></div> : 'Pay now'}</span>
+
+      <button
+        disabled={isLoading || !stripe || !elements}
+        id='submit'
+        className='bg-red-500 text-white p-2 rounded-md m-auto flex mt-[40px]'
+      >
+        Pay Now
       </button>
+
       {/* Show any error or success messages */}
       {message && <div id='payment-message'>{message}</div>}
     </form>
