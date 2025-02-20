@@ -1,5 +1,6 @@
 'use client'
 
+import { Session } from 'inspector/promises'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
@@ -12,9 +13,11 @@ export const UserLinks = () => {
         <div>
           <Link href='/orders'>Orders</Link>
 
-          <Link href='/add' className='ml-5'>
-            Admin
-          </Link>
+          {data.user.isAdmin && (
+            <Link href='/add' className='ml-5'>
+              Admin
+            </Link>
+          )}
 
           <span className='ml-4 cursor-pointer' onClick={() => signOut()}>
             LogOut

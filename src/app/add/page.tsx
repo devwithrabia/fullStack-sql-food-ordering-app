@@ -2,7 +2,8 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, FormEventHandler, useState } from 'react'
+import { useState } from 'react'
+import { useForm, useFieldArray } from 'react-hook-form'
 
 type Inputs = {
   title: string
@@ -10,151 +11,179 @@ type Inputs = {
   price: number
   catSlug: string
   img: string
-}
-
-type Option = {
-  title: string
-  additionalPrice: number
+  options: { title: string; additionalPrice: number }[]
 }
 
 const AddPage = () => {
   const { data: session, status } = useSession()
-
-  const [inputs, setInputs] = useState<Inputs>({
-    title: '',
-    desc: '',
-    price: 0,
-    catSlug: '',
-    img: ''
-  })
-
-  const [option, setOption] = useState<Option>({
-    title: '',
-    additionalPrice: 0
-  })
-
-  const [options, setOptions] = useState<Option[]>([])
-
-  //for images first target your document files ,put in state here we use File state,then
-  //this file needs uploader so, make uploader for image through cloudinary,then post
-  //this file and uploader on url,this url will be made from upload api reference ,then this url will be put in img property of product model:
-
   const router = useRouter()
+  const [imageBase64, setImageBase64] = useState<string>('')
 
-  if (status === 'loading') {
-    return <p>Loading...</p>
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors }
+  } = useForm<Inputs>({
+    defaultValues: {
+      title: '',
+      desc: '',
+      price: 0,
+      catSlug: '',
+      img: '',
+      options: []
+    }
+  })
+
+  //for settiing options:
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'options'
+  })
+
+  if (status === 'loading') return <p>Loading...</p>
+  if (status === 'unauthenticated' || !session?.user.isAdmin) router.push('/')
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+
+    if (file) {
+      const reader = new FileReader()
+
+      reader.readAsDataURL(file)
+
+      reader.onload = () => {
+        const base64String = reader.result as string
+        setImageBase64(base64String)
+        setValue('img', base64String) // Set form value
+      }
+
+      reader.onerror = error => console.error('Error reading file:', error)
+    }
   }
 
-  if (status === 'unauthenticated' || !session?.user.isAdmin) {
-    router.push('/')
-  }
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setInputs(prev => {
-      return { ...prev, [e.target.name]: e.target.value }
-    })
-  }
-
-  const changeOption = (e: ChangeEvent<HTMLInputElement>) => {
-    setOption(prev => {
-      return { ...prev, [e.target.name]: e.target.value }
-    })
-  }
-
-  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const onSubmit = async (data: Inputs) => {
     try {
-      // const url = await upload()
       const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
       const res = await fetch(`${apiUrl}/api/products`, {
         method: 'POST',
-        body: JSON.stringify({
-          ...inputs,
-          options
-        })
+        body: JSON.stringify(data)
       })
 
-      const data = await res.json()
+      const result = await res.json()
 
-      router.push(`/singleProduct/${data.id}`)
+      router.push(`/singleProduct/${result.id}`)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
   return (
-    <div>
-      <form className='shadow-lg flex flex-wrap gap-4' onSubmit={submitHandler}>
-        <h1>Add New Product</h1>
+    <div className='flex flex-col gap-8 items-center min-h-screen mt-9'>
+      <h1 className='font-bold text-4xl text-red-500 text-center flex'>Add New Product</h1>
 
-        <div className='w-full flex flex-col gap-2'>
+      <form className='shadow-lg w-[50vw]  flex flex-col  gap-4  items-center ' onSubmit={handleSubmit(onSubmit)}>
+        {/* Image */}
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Image</label>
 
-          <input className='ring-1 ring-red-200 p-2 rounded-sm' type='text' onChange={handleChange} name='img' />
+          <input
+            type='file'
+            accept='image/*'
+            onChange={handleImageChange}
+            className='ring-1 ring-red-200 p-2 rounded-sm '
+          />
+
+          {imageBase64 && <img src={imageBase64} alt='Preview' className='w-32 h-32 mt-2' />}
+
+          {errors.img && <span className='text-red-500'>{errors.img.message}</span>}
         </div>
 
-        <div className='w-full flex flex-col gap-2'>
+        {/* Title */}
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Title</label>
 
-          <input onChange={handleChange} className='ring-1 ring-red-200 p-2 rounded-sm' type='text' name='title' />
+          <input
+            className='ring-1 ring-red-200 p-2 rounded-sm '
+            type='text'
+            {...register('title', { required: 'title is required' })}
+          />
+
+          {errors.title && <span className='text-red-500'>{errors.title.message}</span>}
         </div>
 
-        <div className='w-full flex flex-col gap-2'>
+        {/* Description */}
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Desc</label>
 
-          <textarea onChange={handleChange} className='ring-1 ring-red-200 p-2 rounded-sm' name='desc' />
+          <textarea
+            className='ring-1 ring-red-200 p-2 rounded-sm '
+            {...register('desc', { required: 'description is required' })}
+          />
+
+          {errors.desc && <span className='text-red-500'>{errors.desc.message}</span>}
         </div>
 
-        <div className='w-full flex flex-col gap-2'>
+        {/* Price */}
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Price</label>
 
-          <input onChange={handleChange} className='ring-1 ring-red-200 p-2 rounded-sm' type='text' name='price' />
+          <input
+            className='ring-1 ring-red-200 p-2 rounded-sm '
+            type='number'
+            {...register('price', { valueAsNumber: true, required: 'price is required' })}
+          />
+
+          {errors.price && <span className='text-red-500'>{errors.price.message}</span>}
         </div>
 
-        <div className='w-full flex flex-col gap-2'>
+        {/* Category */}
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Category</label>
 
-          <input onChange={handleChange} className='ring-1 ring-red-200 p-2 rounded-sm' type='text' name='catSlug' />
+          <input
+            className='ring-1 ring-red-200 p-2 rounded-sm '
+            type='text'
+            {...register('catSlug', { required: 'category is required' })}
+          />
+
+          {errors.catSlug && <span className='text-red-500'>{errors.catSlug.message}</span>}
         </div>
 
-        <div className='w-full flex flex-col gap-2'>
-          <label>Options</label>
+        {/* Options */}
+        <div className=' flex flex-col gap-6  items-center w-[100%]'>
+          {fields.map((field, index) => (
+            <div key={field.id} className='flex justify-center gap-4 w-[100%]'>
+              <input
+                className='ring-1 ring-red-200 p-2 rounded-sm w-[30%] '
+                type='text'
+                placeholder='Title'
+                {...register(`options.${index}.title`)}
+              />
 
-          <div>
-            <input
-              onChange={changeOption}
-              className='ring-1 ring-red-200 p-2 rounded-sm'
-              type='text'
-              placeholder='Title'
-              name='title'
-            />
+              <input
+                className='ring-1 ring-red-200 p-2 rounded-sm w-[30%]'
+                type='number'
+                placeholder='Additional Price'
+                {...register(`options.${index}.additionalPrice`, { valueAsNumber: true })}
+              />
 
-            <input
-              onChange={changeOption}
-              className='ring-1 ring-red-200 p-2 rounded-sm'
-              type='number'
-              placeholder='Additional Price'
-              name='additionalPrice'
-            />
-          </div>
+              <button type='button' className='text-red-500 ' onClick={() => remove(index)}>
+                Remove
+              </button>
+            </div>
+          ))}
 
-          <div className='w-52 bg-red-500 text-white p-2' onClick={() => setOptions(prev => [...prev, option])}>
+          <button
+            type='button'
+            className=' bg-red-500 text-white p-2 rounded-md'
+            onClick={() => append({ title: '', additionalPrice: 0 })}
+          >
             Add Option
-          </div>
-        </div>
-
-        <div>
-          {options.map(item => {
-            return (
-              <div className='ring-1 p-2 ring-red-500 rounded-md cursor-pointer' key={item.title}>
-                <span>{item.title}</span>
-
-                <span>{item.additionalPrice}</span>
-              </div>
-            )
-          })}
+          </button>
         </div>
 
         <button type='submit' className='p-2 w-full bg-red-500 text-white'>

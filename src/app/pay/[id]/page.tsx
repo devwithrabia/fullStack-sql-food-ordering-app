@@ -13,8 +13,6 @@ const PayPage = ({ params }: { params: { id: string } }) => {
   const [clientSecret, setClientSecret] = useState('')
   const { id } = params
 
-  console.log(id)
-
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -50,8 +48,6 @@ const PayPage = ({ params }: { params: { id: string } }) => {
           <CheckoutForm />
         </Elements>
       )}
-
-      <h1>Hello Everybody</h1>
     </div>
   )
 }

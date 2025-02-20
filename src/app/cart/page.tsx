@@ -17,8 +17,6 @@ const CartPage = () => {
     useCartStore.persist.rehydrate()
   }, [])
 
-  console.log(products)
-
   const checkoutOrder = async () => {
     if (!session) {
       router.push('/')
