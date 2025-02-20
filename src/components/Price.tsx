@@ -26,7 +26,7 @@ const Price = ({ product }: Props) => {
 
   useEffect(() => {
     if (product.options?.length) {
-      setTotal(quantity * product.price + product.options[selected].additionalPrice)
+      setTotal(quantity * product.options[selected].additionalPrice)
     }
   }, [quantity, selected, product])
 
