@@ -82,19 +82,19 @@ const AddPage = () => {
   }
 
   return (
-    <div>
-      <form className='shadow-lg flex flex-wrap gap-4' onSubmit={handleSubmit(onSubmit)}>
-        <h1>Add New Product</h1>
+    <div className='flex flex-col gap-8 items-center min-h-screen mt-9'>
+      <h1 className='font-bold text-4xl text-red-500 text-center flex'>Add New Product</h1>
 
+      <form className='shadow-lg w-[50vw]  flex flex-col  gap-4  items-center ' onSubmit={handleSubmit(onSubmit)}>
         {/* Image */}
-        <div className='w-full flex flex-col gap-2'>
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Image</label>
 
           <input
             type='file'
             accept='image/*'
             onChange={handleImageChange}
-            className='ring-1 ring-red-200 p-2 rounded-sm'
+            className='ring-1 ring-red-200 p-2 rounded-sm '
           />
 
           {imageBase64 && <img src={imageBase64} alt='Preview' className='w-32 h-32 mt-2' />}
@@ -103,11 +103,11 @@ const AddPage = () => {
         </div>
 
         {/* Title */}
-        <div className='w-full flex flex-col gap-2'>
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Title</label>
 
           <input
-            className='ring-1 ring-red-200 p-2 rounded-sm'
+            className='ring-1 ring-red-200 p-2 rounded-sm '
             type='text'
             {...register('title', { required: 'title is required' })}
           />
@@ -116,11 +116,11 @@ const AddPage = () => {
         </div>
 
         {/* Description */}
-        <div className='w-full flex flex-col gap-2'>
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Desc</label>
 
           <textarea
-            className='ring-1 ring-red-200 p-2 rounded-sm'
+            className='ring-1 ring-red-200 p-2 rounded-sm '
             {...register('desc', { required: 'description is required' })}
           />
 
@@ -128,11 +128,11 @@ const AddPage = () => {
         </div>
 
         {/* Price */}
-        <div className='w-full flex flex-col gap-2'>
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Price</label>
 
           <input
-            className='ring-1 ring-red-200 p-2 rounded-sm'
+            className='ring-1 ring-red-200 p-2 rounded-sm '
             type='number'
             {...register('price', { valueAsNumber: true, required: 'price is required' })}
           />
@@ -141,11 +141,11 @@ const AddPage = () => {
         </div>
 
         {/* Category */}
-        <div className='w-full flex flex-col gap-2'>
+        <div className=' flex flex-col gap-2 w-[80%]'>
           <label>Category</label>
 
           <input
-            className='ring-1 ring-red-200 p-2 rounded-sm'
+            className='ring-1 ring-red-200 p-2 rounded-sm '
             type='text'
             {...register('catSlug', { required: 'category is required' })}
           />
@@ -154,25 +154,24 @@ const AddPage = () => {
         </div>
 
         {/* Options */}
-        <div className='w-full flex flex-col gap-2'>
-          <label>Options</label>
-
+        <div className=' flex flex-col gap-6  items-center w-[100%]'>
           {fields.map((field, index) => (
-            <div key={field.id} className='flex gap-2'>
+            <div key={field.id} className='flex justify-center gap-4 w-[100%]'>
               <input
-                className='ring-1 ring-red-200 p-2 rounded-sm'
+                className='ring-1 ring-red-200 p-2 rounded-sm w-[30%] '
                 type='text'
                 placeholder='Title'
                 {...register(`options.${index}.title`)}
               />
+
               <input
-                className='ring-1 ring-red-200 p-2 rounded-sm'
+                className='ring-1 ring-red-200 p-2 rounded-sm w-[30%]'
                 type='number'
                 placeholder='Additional Price'
                 {...register(`options.${index}.additionalPrice`, { valueAsNumber: true })}
               />
 
-              <button type='button' className='text-red-500' onClick={() => remove(index)}>
+              <button type='button' className='text-red-500 ' onClick={() => remove(index)}>
                 Remove
               </button>
             </div>
@@ -180,7 +179,7 @@ const AddPage = () => {
 
           <button
             type='button'
-            className='w-52 bg-red-500 text-white p-2'
+            className=' bg-red-500 text-white p-2 rounded-md'
             onClick={() => append({ title: '', additionalPrice: 0 })}
           >
             Add Option
