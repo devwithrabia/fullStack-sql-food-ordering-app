@@ -76,6 +76,11 @@ const AddPage = () => {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
+      if (!apiUrl) {
+        console.error('API URL is missing')
+        return
+      }
+
       const res = await fetch(`${apiUrl}/api/products`, {
         method: 'POST',
         body: JSON.stringify(data)

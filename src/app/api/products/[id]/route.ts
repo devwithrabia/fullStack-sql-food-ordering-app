@@ -7,6 +7,9 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
     const singleProduct = await prisma.product.findUnique({
       where: {
         id: id as string
+      },
+      include: {
+        options: true // Fetch options related to each product
       }
     })
 
