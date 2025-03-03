@@ -10,6 +10,5 @@ type Props = {
 }
 
 export const QueryProvider = ({ children }: Props) => {
-  console.log('hi')
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
