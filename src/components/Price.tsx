@@ -28,6 +28,7 @@ const Price = ({ product }: Props) => {
     if (product.options?.length) {
       setTotal(quantity * product.options[selected].additionalPrice)
     }
+    return setTotal(quantity * product.price)
   }, [quantity, selected, product])
 
   return (
