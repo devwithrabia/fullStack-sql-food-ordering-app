@@ -10,8 +10,10 @@ const Offer = () => {
         <h1 className='text-white text-5xl font-bold xl:text-6xl'>Delicious Sandwich & French Fry</h1>
 
         <p className='text-white xl:text-xl'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolor omnis voluptate nostrum rerum eaque qui
-          dignissimos! Tempore expedita, eveniet debitis earum adipisci harum quo quia laboriosam optio suscipit esse!
+          MASSIMO is a seamless and user-friendly food ordering app designed to bring your favorite meals right to your
+          doorstep. Whether you're craving a quick bite or a gourmet feast, MASSIMO connects you with top restaurants
+          and eateries in your area. With an intuitive interface, real-time order tracking, and secure payment options,
+          ordering food has never been easier. Experience convenience, speed, and deliciousness—all in one app. 🍕🍔🥗🚀
         </p>
 
         <CountDown />
