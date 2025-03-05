@@ -55,6 +55,12 @@ const AddPage = () => {
     name: 'options'
   })
 
+  const selectCat = [
+    { id: 1, name: 'burgers' },
+    { id: 2, name: 'pizzas' },
+    { id: 3, name: 'pastas' }
+  ]
+
   if (status === 'loading') return <p>Loading...</p>
   if (status === 'unauthenticated' || !session?.user.isAdmin) router.push('/')
 
@@ -138,9 +144,17 @@ const AddPage = () => {
         </div>
 
         {/* Category */}
+
         <div className='flex flex-col gap-2 w-[80%]'>
           <label>Category</label>
-          <input className='ring-1 ring-red-200 p-2 rounded-sm' type='text' {...register('catSlug')} />
+          <select className='ring-1 ring-red-200 p-2 rounded-sm' {...register('catSlug')}>
+            <option value=''>Select Category</option>
+            {selectCat.map(category => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
           {errors.catSlug && <span className='text-red-500'>{errors.catSlug.message}</span>}
         </div>
 
