@@ -55,12 +55,6 @@ const AddPage = () => {
     name: 'options'
   })
 
-  const selectCat = [
-    { id: 1, name: 'burgers' },
-    { id: 2, name: 'pizzas' },
-    { id: 3, name: 'pastas' }
-  ]
-
   if (status === 'loading') return <p>Loading...</p>
   if (status === 'unauthenticated' || !session?.user.isAdmin) router.push('/')
 
@@ -149,11 +143,9 @@ const AddPage = () => {
           <label>Category</label>
           <select className='ring-1 ring-red-200 p-2 rounded-sm' {...register('catSlug')}>
             <option value=''>Select Category</option>
-            {selectCat.map(category => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
+            <option value='burgers'>burgers</option>
+            <option value='pizzas'>pizzas</option>
+            <option value='pastas'>pastas</option>
           </select>
           {errors.catSlug && <span className='text-red-500'>{errors.catSlug.message}</span>}
         </div>
