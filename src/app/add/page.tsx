@@ -4,28 +4,8 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-// Define Zod Schema
-const productSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  desc: z.string().min(1, 'Description is required'),
-  price: z.number().min(1, 'Price must be greater than 0'),
-  catSlug: z.string().min(1, 'Category is required'),
-  img: z.string().min(1, 'Image is required'),
-  options: z
-    .array(
-      z.object({
-        title: z.string().min(1, 'Option title is required'),
-        additionalPrice: z.number().min(0, 'Additional price must be 0 or more')
-      })
-    )
-    .optional()
-})
-
-// TypeScript Type from Zod Schema
-type Inputs = z.infer<typeof productSchema>
+import { Inputs, productSchema } from '@/types/types'
 
 const AddPage = () => {
   const { data: session, status } = useSession()
@@ -83,10 +63,12 @@ const AddPage = () => {
 
       const res = await fetch(`${apiUrl}/api/products`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
 
       const result = await res.json()
+      console.log(result)
 
       router.push(`/singleProduct/${result.id}`)
     } catch (error) {

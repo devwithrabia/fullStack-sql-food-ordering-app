@@ -1,3 +1,4 @@
+import { productSchema } from '@/types/types'
 import { prisma } from '@/utils/connect'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -23,8 +24,16 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json()
 
+    // ✅ Validate using Zod
+    const validationResult = productSchema.safeParse(body)
+
+    if (!validationResult.success) {
+      console.log('Validation errors:', validationResult.error.format())
+      return new NextResponse(JSON.stringify({ error: validationResult.error.format() }), { status: 400 })
+    }
+
     // Extract product data separately from options
-    const { title, desc, price, catSlug, img, options } = body
+    const { title, desc, price, catSlug, img, options } = validationResult.data
 
     // Create the Product first
     const newProduct = await prisma.product.create({
