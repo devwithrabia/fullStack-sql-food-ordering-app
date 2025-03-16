@@ -24,7 +24,7 @@ model Product {
   title      String
   desc       String
   img        String?
-  price      Decimal
+  price      Float
   isFeatured Boolean  @default(false)
   catSlug    String // Foreign key reference
   category   Category @relation(fields: [catSlug], references: [slug])
@@ -42,7 +42,7 @@ model Option {
 model Order {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
-  price     Decimal
+  price     Float
   products  Json[]
   status    String
   intent_id String?  @unique
